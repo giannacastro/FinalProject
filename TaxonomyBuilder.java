@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Taxonomy {
+public class TaxonomyBuilder {
 
   public enum Domain {
     EUKARYA(1),
