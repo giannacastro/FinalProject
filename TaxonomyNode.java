@@ -1,15 +1,14 @@
-import java.util.ArrayList;
-import java.util.List;
+import Domain; // Import Domain
 
 public class TaxonomyNode {
 
-    private Enum rank;
+    private Domain rank;
 
     private String name;
 
     private List<TaxonomyNode> children;
 
-    public TaxonomyNode(Enum rank, String name) {
+    public TaxonomyNode(Domain rank, String name) {
         this.rank = rank;
         this.name = name;
         this.children = new ArrayList<>();
@@ -23,8 +22,12 @@ public class TaxonomyNode {
         return name;
     }
 
-    public Enum getRank() {
+    public Domain getRank() {
         return rank;
+    }
+
+    public List<TaxonomyNode> getChildren() {
+        return children;
     }
 
 }
