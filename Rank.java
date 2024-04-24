@@ -1,30 +1,43 @@
-public class Rank {
+import java.util.List;
+import java.util.ArrayList;
+
+public class Rank extends Domain {
 
   private String name;
+
   private List<Rank> children;
 
   public Rank(String name) {
+    super();
     this.name = name;
     this.children = new ArrayList<>();
   }
 
   public String getName() {
-    return name;
+    return this.name;
   }
 
   public void addChild(String childName) {
     Rank child = new Rank(childName);
-    children.add(child);
+    this.children.add(child);
   }
 
   public List<Rank> getChildren() {
-    return children;
+    return this.children;
   }
 
   public void print() {
-    System.out.println(name);
-    for (Rank child : children) {
+    System.out.println(this.name);
+    for (Rank child : this.children) {
       child.print();
     }
   }
+
+  public static void main(String[] args) {
+    Rank root = new Rank("Root");
+    root.addChild("Child");
+    root.print();
+  }
+
 }
+
