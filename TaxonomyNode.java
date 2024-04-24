@@ -1,48 +1,59 @@
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TaxonomyNode {
-    private String name;
-    private Rank rank;
-    private TaxonomyNode parent;
-    private Map<String, TaxonomyNode> children;
 
-    public TaxonomyNode(String name, Rank rank) {
+    private TaxonomyEnum rank; // Use specific enum instead of Rank
+
+    private String name;
+
+    private List<TaxonomyNode> children;
+
+    public TaxonomyNode(TaxonomyEnum rank, String name) {
+        this.rank = rank; // Set to appropriate enum
         this.name = name;
-        this.rank = rank;
-        this.children = new HashMap<>();
+        this.children = new ArrayList<>();
+    }
+
+    public TaxonomyEnum getRank() {
+        return rank; // Return specific enum
     }
 
     public String getName() {
         return name;
     }
 
-    public Rank getRank() {
-        return rank;
-    }
-
-    public TaxonomyNode getParent() {
-        return parent;
-    }
-
-    public void setParent(TaxonomyNode parent) {
-        this.parent = parent;
+    public List<TaxonomyNode> getChildren() {
+        return children;
     }
 
     public void addChild(TaxonomyNode child) {
-        children.put(child.getName(), child);
-        child.setParent(this);
+        children.add(child);
     }
 
     public boolean containsChild(String childName) {
-        return children.containsKey(childName);
+        for (TaxonomyNode child : children) {
+            if (child.getName().equals(childName)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public TaxonomyNode getChild(String childName) {
-        return children.get(childName);
+        for (TaxonomyNode child : children) {
+            if (child.getName().equals(childName)) {
+                return child;
+            }
+        }
+        return null;
     }
 
     public String[] getChildrenNames() {
-        return children.keySet().toArray(new String[0]);
+        String[] names = new String[children.size()];
+        for (int i = 0; i < children.size(); i++) {
+            names[i] = children.get(i).getName();
+        }
+        return names;
     }
 }
