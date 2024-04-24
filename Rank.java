@@ -1,16 +1,12 @@
 import java.util.List;
 import java.util.ArrayList;
 
-import Domain;
-
-public class Rank implements Domain {
+public class Rank {
 
   private String name;
-
   private List<Rank> children;
 
   public Rank(String name) {
-    super();
     this.name = name;
     this.children = new ArrayList<>();
   }
@@ -19,8 +15,7 @@ public class Rank implements Domain {
     return this.name;
   }
 
-  public void addChild(String childName) {
-    Rank child = new Rank(childName);
+  public void addChild(Rank child) {
     this.children.add(child);
   }
 
@@ -30,15 +25,20 @@ public class Rank implements Domain {
 
   public void print() {
     System.out.println(this.name);
+
     for (Rank child : this.children) {
       child.print();
     }
   }
 
-  public static void main(String[] args) {
-    Rank root = new Rank("Root");
-    root.addChild("Child");
-    root.print();
-  }
+  public void print(int indent) {
+    for (int i = 0; i < indent; i++) {
+      System.out.print("-");
+    }
+    System.out.println(this.name);
 
+    for (Rank child : this.children) {
+      child.print(indent + 1);
+    }
+  }
 }
