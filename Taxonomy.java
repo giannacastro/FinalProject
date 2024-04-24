@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class Taxonomy {
 
   private String name;
@@ -48,6 +49,4 @@ public class Taxonomy {
     return null;
   }
 }
-
-
 
